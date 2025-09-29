@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Table Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: auto auto auto; /* 3 columns */
+      gap: 15px;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .grid label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .grid input {
+      width: 150px;
+      padding: 5px;
+    }
+
+    .cell {
+      padding: 8px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Table Form</h1>
+
+  <div class="grid">
+    <!-- First row: labels + inputs -->
+    <div>
+      <label for="field1">Label 1</label>
+      <input type="text" id="field1">
+    </div>
+    <div>
+      <label for="field2">Label 2</label>
+      <input type="text" id="field2">
+    </div>
+    <div>
+      <label for="field3">Label 3</label>
+      <input type="text" id="field3">
+    </div>
+
+    <!-- Second row: text cells -->
+    <div class="cell">Text A1</div>
+    <div class="cell">Text A2</div>
+    <div class="cell">Text A3</div>
+
+    <!-- Third row: text cells -->
+    <div class="cell">Text B1</div>
+    <div class="cell">Text B2</div>
+    <div class="cell">Text B3</div>
+  </div>
+</body>
+</html>
