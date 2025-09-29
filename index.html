@@ -9,8 +9,8 @@
       font-family: Arial, sans-serif;
       padding: 20px;
       text-align: center;
-      background-color: #001536; /* new background */
-      color: #fff; /* make text visible */
+      background-color: #001536;
+      color: #fff;
     }
 
     h1 {
@@ -19,44 +19,117 @@
 
     .grid {
       display: grid;
-      grid-template-columns: auto auto; /* 2 columns: text + input */
-      gap: 15px 30px; /* row gap / column gap */
+      grid-template-columns: auto auto;
+      gap: 15px 30px;
       justify-content: center;
       text-align: left;
+      margin-bottom: 20px;
     }
 
-    .grid input {
-      width: 180px;
-      padding: 5px;
-    }
+	.grid {
+	  display: grid;
+	  grid-template-columns: auto auto;
+	  gap: 15px 2px;
+	  justify-content: center;
+	  text-align: left;
+	  margin-bottom: 20px;
+	  align-items: center; /* Center vertically */
+	}
 
     .cell {
-      padding: 8px;
-      border: 1px solid #ccc;
-      background: #123456; /* darker shade for cells */
+      padding: 0;
+      border: none;
+      background: none;
+      text-align: right;
+    }
+
+    #result {
+      margin-top: 20px;
       text-align: center;
+      background: #123456;
+      padding: 15px;
       border-radius: 6px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quest-title {
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <h1>Mystic Tome Solver</h1>
 
-  <div class="grid">
-    <!-- First column: Text A1..A3 -->
-    <div class="cell">Text A1</div>
-    <input type="text">
+<!-- Inputs -->
+<div class="grid">
+  <div class="cell">Realm:</div>
+  <input type="number" id="realmInput" value="15">
 
-    <div class="cell">Text A2</div>
-    <input type="text">
+  <div class="cell">Level:</div>
+  <input type="number" id="levelInput" value="150">
 
-    <div class="cell">Text A3</div>
-    <input type="text">
+  <div class="cell">Date:</div>
+  <input type="date" id="dateInput">
+</div>
 
-    <!-- Second group: Text B1..B3 under Text A3 -->
-    <div class="cell">Text B1</div>
-    <div class="cell">Text B2</div>
-    <div class="cell">Text B3</div>
-  </div>
+  <!-- Result display -->
+  <div id="result"></div>
+
+  <script>
+    // Auto-fill date input with today's date
+    const dateInput = document.getElementById('dateInput');
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.value = `${yyyy}-${mm}-${dd}`;
+
+    const realmInput = document.getElementById('realmInput');
+    const levelInput = document.getElementById('levelInput');
+
+    function calculateAllAnswers() {
+      const realm = parseInt(realmInput.value) || 0;
+      const level = parseInt(levelInput.value) || 0;
+      const date = dateInput.value;
+
+      // --- Flying Fairy ---
+      const banishedFairyAnswer = ((level + realm) % 2 === 0) ? "More Happiness" : "More Pain";
+      const painOrHappinessAnswer = "Pain";
+
+      // --- Dream Seeker (simplified) ---
+      const dreamKeyword = "flower"; // placeholder
+      const dreamAnswer = (dreamKeyword.toLowerCase().includes("flower") || dreamKeyword.toLowerCase().includes("nature")) ? "Correct Answer" : "Wrong Answer";
+
+      // --- Riverside Immortal ---
+      const day = new Date(date).getDay();
+      const riversideAnswer = (day % 2 === 0) ? "Hope" : "Despair";
+
+      // Display all answers only
+      document.getElementById('result').innerHTML = `
+        <div class="quest-title">Flying Fairy</div>
+        <div>The Banished Fairy: ${banishedFairyAnswer}</div>
+        <div>Pain or Happiness: ${painOrHappinessAnswer}</div>
+
+        <div class="quest-title">Dream Seeker</div>
+        <div>Answer: ${dreamAnswer}</div>
+
+        <div class="quest-title">Riverside Immortal</div>
+        <div>Answer: ${riversideAnswer}</div>
+      `;
+    }
+
+    // Add event listeners to recalc when input changes
+    realmInput.addEventListener('input', calculateAllAnswers);
+    levelInput.addEventListener('input', calculateAllAnswers);
+    dateInput.addEventListener('input', calculateAllAnswers);
+
+    // Initial calculation
+    calculateAllAnswers();
+  </script>
 </body>
 </html>
