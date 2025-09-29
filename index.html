@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Table Layout</title>
+  <title>Mystic Tome Solver</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       text-align: center;
+      background-color: #001536; /* new background */
+      color: #fff; /* make text visible */
     }
 
     h1 {
@@ -17,55 +19,41 @@
 
     .grid {
       display: grid;
-      grid-template-columns: auto auto auto; /* 3 columns */
-      gap: 15px;
+      grid-template-columns: auto auto; /* 2 columns: text + input */
+      gap: 15px 30px; /* row gap / column gap */
       justify-content: center;
       text-align: left;
     }
 
-    .grid label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
     .grid input {
-      width: 150px;
+      width: 180px;
       padding: 5px;
     }
 
     .cell {
       padding: 8px;
       border: 1px solid #ccc;
-      background: #f9f9f9;
+      background: #123456; /* darker shade for cells */
       text-align: center;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
-  <h1>My Table Form</h1>
+  <h1>Mystic Tome Solver</h1>
 
   <div class="grid">
-    <!-- First row: labels + inputs -->
-    <div>
-      <label for="field1">Label 1</label>
-      <input type="text" id="field1">
-    </div>
-    <div>
-      <label for="field2">Label 2</label>
-      <input type="text" id="field2">
-    </div>
-    <div>
-      <label for="field3">Label 3</label>
-      <input type="text" id="field3">
-    </div>
-
-    <!-- Second row: text cells -->
+    <!-- First column: Text A1..A3 -->
     <div class="cell">Text A1</div>
-    <div class="cell">Text A2</div>
-    <div class="cell">Text A3</div>
+    <input type="text">
 
-    <!-- Third row: text cells -->
+    <div class="cell">Text A2</div>
+    <input type="text">
+
+    <div class="cell">Text A3</div>
+    <input type="text">
+
+    <!-- Second group: Text B1..B3 under Text A3 -->
     <div class="cell">Text B1</div>
     <div class="cell">Text B2</div>
     <div class="cell">Text B3</div>
